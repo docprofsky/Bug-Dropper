@@ -1,21 +1,29 @@
 <!DOCTYPE HTML>
-<html><head><title>The Bug</title>
-<link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="static/main.css">
-
-</head>
-<body>
-    <h1>Control The Bug</h1>
-    <h2>Boom arm</h2>
-    <p><form>
-        <input type="radio" name="boom" value="raise">Raise<br>
-        <input type="radio" name="boom" value="lower">Lower    
-    </form><br><br>
-    <h2>Bug</h2>
-    <form>
-        <input type="radio" name="bug" value="Raise">Raise<br>
-        <input type="radio" name="bug" value="Stop">Stop<br>
-        <input type="radio" name="bug" value="Lower">Lower
-    </form><p/>
-</body>
+<html>
+    <head>
+        <title>The Bug</title>
+        <meta charset="utf-8">
+        <link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="/static/main.css">
+    </head>
+    
+    <body>
+        <h1>Control The Bug</h1>
+        <h2>Boom arm</h2>
+        <form name="boomPosition" method="post" action="/">
+            <p><input type="radio" name="boom" id="raiseBoom" value="raise" onclick="this.form.submit()">
+                <label for="raiseBoom">Raise</label><br>
+            <input type="radio" name="boom" id="lowerBoom" value="lower" onclick="this.form.submit()">
+                <label for="lowerBoom">Lower</label></p>
+        </form>
+        <h2>Bug</h2>
+        <form name="bugPosition" method="post" action="/">
+            <p><input type="radio" name="bug" id="raiseBug" value="raise" onclick="this.form.submit()">
+                <label for="raiseBug">Raise</label><br>
+            <input type="radio" name="bug" id="stopBug" value="stop" onclick="this.form.submit()">
+                <label for="stopBug">Stop</label><br>
+            <input type="radio" name="bug" id="lowerBug" value="lower" onclick="this.form.submit()">
+                <label for="lowerBug">Lower</label></p>
+        </form>
+    </body>
 </html>
