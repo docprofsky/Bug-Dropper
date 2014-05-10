@@ -1,14 +1,38 @@
 from flask import Flask, render_template, url_for, request
 app = Flask(__name__)
 
-#@app.route('/', methods=['POST', 'GET'])
-#def index():
-#    if request.method == 'POST':
-#        print "posting method used"
-#    elif request.method == 'GET':
-#        print "get method used"
-#    
-#    return render_template('bug_control.html')
+#########################
+## TODO: Add comments! ##
+#########################
+
+BOOM_POITION_FILE = "boom-position.txt"
+BUG_POSITION_FILE = "bug-position.txt"
+UP = 1
+STOP = 0
+DOWN = -1
+
+def write_file(filename, data):
+    f = open(str(filename), "w")
+    f.write(str(data))
+    f.close()
+
+def parse_data(formData):
+    positions = dict()
+    if "boom" in formData:
+            if formData["boom"].lower() == "up":
+                positions["boom"] = UP
+            elif formData["boom"].lower() == "stop":
+                positions["boom"] = STOP
+        
+    if "bug" in formData:
+        if formData["bug"].lower() == "up":
+            positions["bug"] = UP
+        elif formData["bug"].lower() == "stop":
+            positions["bug"] = STOP
+        elif formData["bug"].lower() == "down":
+            positions["bug"] = DOWN
+
+    return positions
 
 @app.route('/', methods=['POST', 'GET'])
 @app.route('/<data>', methods=['POST', 'GET'])
@@ -19,17 +43,11 @@ def boom(data=0):
         
         if "bug" in request.form:
             print "The bug is", request.form["bug"]
-        print "post method used: ", request.form
-    elif request.method == 'GET':
-        print "get method used: ", data
+
+        print parse_data(request.form)
     
     return render_template('bug_control.html')
 
 if __name__ == "__main__":
     app.debug = True
     app.run(host='0.0.0.0', port=80)
-
-def write_file(filename, data):
-    f = open(str(filename), "w")
-    f.write(str(data))
-    f.close()
