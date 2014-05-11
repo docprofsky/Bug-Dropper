@@ -27,7 +27,7 @@ def parse_data(formData):
             positions["boom"] = UP
             data_submitted.append("boom")
         elif formData["boom"].lower() == "down":
-            positions["boom"] = STOP
+            positions["boom"] = DOWN
             data_submitted.append("boom")
         else:
             raise RuntimeError("Value for the boom position is not defined.")
@@ -52,23 +52,20 @@ def parse_data(formData):
 def boom(data=0):
     global positions
     if request.method == 'POST':
-        if "boom" in request.form:
-            print "The boom is", request.form["boom"]
-        
-        if "bug" in request.form:
-            print "The bug is", request.form["bug"]
-
         new_position, data_submitted = parse_data(request.form)
 
         for i in data_submitted:
             if new_position[i] != positions[i]:
                 positions[i] = new_position[i]
 
-        print new_position
-        print "positions :", positions
-    
-    return render_template('bug_control.html')
+        print "The boom is", positions["boom"]
+        print "The bug is", positions["bug"]
+        print "The positions are :", positions
+        
+    return render_template('bug_control.html', boom=positions["boom"],
+            bug=positions["bug"])
 
 if __name__ == "__main__":
     app.debug = True
+    print "The Bug Dropper Control web app is running!"
     app.run(host='0.0.0.0', port=80)

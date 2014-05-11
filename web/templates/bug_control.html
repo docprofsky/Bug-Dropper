@@ -11,18 +11,18 @@
         <h1>Control The Bug</h1>
         <h2>Boom arm</h2>
         <form name="boomPosition" method="post" action="/">
-            <p><input type="radio" name="boom" id="raiseBoom" value="up" onclick="this.form.submit()">
-                <label for="raiseBoom">Raise</label><br>
-            <input type="radio" name="boom" id="lowerBoom" value="down" onclick="this.form.submit()">
-                <label for="lowerBoom">Lower</label></p>
+            <p><input type="radio" name="boom" id="boomUp" value="up" onclick="this.form.submit()" {{ 'checked' if boom == 1}}>
+                <label for="boomUp">Up</label><br>
+            <input type="radio" name="boom" id="boomDown" value="down" onclick="this.form.submit()" {{ 'checked' if boom == -1 }}>
+                <label for="boomDown">Down</label></p>
         </form>
         <h2>Bug</h2>
         <form name="bugPosition" method="post" action="/">
-            <p><input type="radio" name="bug" id="raiseBug" value="up" onclick="this.form.submit()">
+            <p><input type="radio" name="bug" id="raiseBug" value="up" onclick="this.form.submit()" {{ 'checked' if bug == 1 }}>
                 <label for="raiseBug">Raise</label><br>
-            <input type="radio" name="bug" id="stopBug" value="stop" onclick="this.form.submit()">
+            <input type="radio" name="bug" id="stopBug" value="stop" onclick="this.form.submit()" {{ 'checked' if bug == 0 }}>
                 <label for="stopBug">Stop</label><br>
-            <input type="radio" name="bug" id="lowerBug" value="down" onclick="this.form.submit()">
+            <input type="radio" name="bug" id="lowerBug" value="down" onclick="this.form.submit()" {{ 'checked' if bug == -1 }}>
                 <label for="lowerBug">Lower</label></p>
         </form>
     </body>
