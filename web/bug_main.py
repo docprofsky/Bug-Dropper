@@ -62,7 +62,7 @@ def boom(data=0):
 
         for i in data_submitted:
             if new_position[i] != positions[i]:
-                positions = new_position[i]
+                positions[i] = new_position[i]
 
         print new_position
         print "positions :", positions
