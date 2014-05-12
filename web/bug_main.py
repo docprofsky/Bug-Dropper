@@ -61,6 +61,9 @@ def boom(data=0):
         print "The boom is", positions["boom"]
         print "The bug is", positions["bug"]
         print "The positions are :", positions
+
+        write_file(BOOM_POITION_FILE, positions["boom"])
+        write_file(BUG_POSITION_FILE, positions["bug"])
         
     return render_template('bug_control.html', boom=positions["boom"],
             bug=positions["bug"])
