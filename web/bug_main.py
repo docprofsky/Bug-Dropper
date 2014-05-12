@@ -69,6 +69,8 @@ def boom(data=0):
             bug=positions["bug"])
 
 if __name__ == "__main__":
+    write_file(BOOM_POITION_FILE, positions["boom"])
+    write_file(BUG_POSITION_FILE, positions["bug"])
     app.debug = True
     print "The Bug Dropper Control web app is running!"
     app.run(host='0.0.0.0', port=80)
