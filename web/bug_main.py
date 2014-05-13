@@ -7,11 +7,11 @@ app = Flask(__name__)
 
 BOOM_POITION_FILE = "boom-position.txt"
 BUG_POSITION_FILE = "bug-position.txt"
-UP = 1
+UP = 2
 STOP = 0
-DOWN = -1
+DOWN = 1
 
-positions = {"bug": STOP, "boom": UP}
+positions = {"bug": STOP, "boom": 9}
 
 def write_file(filename, data):
     f = open(str(filename), "w")
@@ -19,33 +19,27 @@ def write_file(filename, data):
     f.close()
 
 def parse_data(formData):
-    positions = dict()
+    new_positions = dict()
     data_submitted = list()
 
     if "boom" in formData:
-        if formData["boom"].lower() == "up":
-            positions["boom"] = UP
-            data_submitted.append("boom")
-        elif formData["boom"].lower() == "down":
-            positions["boom"] = DOWN
-            data_submitted.append("boom")
-        else:
-            raise RuntimeError("Value for the boom position is not defined.")
+        new_positions["boom"] = formData["boom"]
+        data_submitted.append("boom")
 
     if "bug" in formData:
         if formData["bug"].lower() == "up":
-            positions["bug"] = UP
+            new_positions["bug"] = UP
             data_submitted.append("bug")
         elif formData["bug"].lower() == "stop":
-            positions["bug"] = STOP
+            new_positions["bug"] = STOP
             data_submitted.append("bug")
         elif formData["bug"].lower() == "down":
-            positions["bug"] = DOWN
+            new_positions["bug"] = DOWN
             data_submitted.append("bug")
         else:
             raise RuntimeError("Value for the bug position is not defined.")
 
-    return positions, data_submitted
+    return new_positions, data_submitted
 
 @app.route('/', methods=['POST', 'GET'])
 @app.route('/<data>', methods=['POST', 'GET'])
