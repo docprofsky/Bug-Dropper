@@ -18,7 +18,7 @@
             <input type="radio" name="boom" id="boomDown" value="down" onclick="this.form.submit()" {{ 'checked' if boom == -1 }}>
                 <label for="boomDown">Down</label></p>
 -->
-            <input type="range" name="boom" min="4" max="14" onclick="this.form.submit()" onchange="this.form.submit()" value="{{ boom }}">
+            <input type="range" name="boom" min="4" max="14" onclick="this.form.submit()" ontouchend="this.form.submit()" value="{{ boom }}">
             
             
         </form>

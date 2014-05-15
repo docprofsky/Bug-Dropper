@@ -25,15 +25,14 @@ void setup() {
   boomServo.attach(10);
   boomServo.write(boomCenter);
 
-  Serial.begin(115200);
-
+//  Serial.begin(115200);
 }
 
 void loop() {
   delay(200);
   bugPosition = getBug();
-  Serial.print("The bug is: ");
-  Serial.println(bugPosition);
+//  Serial.print("The bug is: ");
+//  Serial.println(bugPosition);
 
   switch(bugPosition) {
   case up:
@@ -56,8 +55,8 @@ void loop() {
   boomPosition = getBoom() * 10;
   if(boomPosition == 0)
     boomPosition += 1;
-  Serial.print("The boom is: ");
-  Serial.println(boomPosition);
+//  Serial.print("The boom is: ");
+//  Serial.println(boomPosition);
   boomServo.write(boomPosition);
 }
 
@@ -96,5 +95,8 @@ int getBoom() {
   }
   return atoi(output);
 }
+
+
+
 
 
