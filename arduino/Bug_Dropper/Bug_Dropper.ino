@@ -1,4 +1,3 @@
-#include <Wire.h>
 #include <Servo.h>
 
 const int up = 2;
@@ -48,7 +47,7 @@ void loop() {
     break;
 
   default:
-    Serial.println("Error reading bug position.");
+//    Serial.println("Error reading bug position.");
     bugServo.write(90);
   }
 
@@ -65,14 +64,14 @@ int getBug() {
   FILE *fp; 
   fp = fopen("/home/root/Bug-Dropper/bug-position.txt", "r");
   if (fp == NULL) {
-    Serial.println("Error opening bug file.");
+//    Serial.println("Error opening bug file.");
     return -1;
   }
   else { 
     fgets(output, sizeof(output), fp);
   }
   if (fclose(fp) != 0) {
-    Serial.println("Error closing the bug file.");
+//    Serial.println("Error closing the bug file.");
     return -1;
   }
   return atoi(output);
@@ -83,20 +82,16 @@ int getBoom() {
   FILE *fp; 
   fp = fopen("/home/root/Bug-Dropper/boom-position.txt", "r");
   if (fp == NULL) {
-    Serial.println("Error opening bug file.");
+//    Serial.println("Error opening bug file.");
     return -1;
   }
   else { 
     fgets(output, sizeof(output), fp);
   }
   if (fclose(fp) != 0) {
-    Serial.println("Error closing the bug file.");
+//    Serial.println("Error closing the bug file.");
     return -1;
   }
   return atoi(output);
 }
-
-
-
-
 
