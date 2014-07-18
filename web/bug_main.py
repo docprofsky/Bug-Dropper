@@ -1,10 +1,6 @@
 from flask import Flask, render_template, url_for, request
 app = Flask(__name__)
 
-#########################
-## TODO: Add comments! ##
-#########################
-
 BOOM_POITION_FILE = "boom-position.txt"
 BUG_POSITION_FILE = "bug-position.txt"
 UP = 2
@@ -13,11 +9,20 @@ DOWN = 1
 
 positions = {"bug": STOP, "boom": 9}
 
+#
+# Writing data to a file 
+#
 def write_file(filename, data):
     f = open(str(filename), "w")
     f.write(str(data))
     f.close()
 
+# 
+# Parsing HTML forms
+# returns :
+# - updated position: 'boom' value, up, stop, or down
+# - updated list of events: 'boom' or 'bug'
+#
 def parse_data(formData):
     new_positions = dict()
     data_submitted = list()
@@ -43,9 +48,11 @@ def parse_data(formData):
 
 @app.route('/', methods=['POST', 'GET'])
 @app.route('/<data>', methods=['POST', 'GET'])
+
 def boom(data=0):
     global positions
     if request.method == 'POST':
+        # Parse the HTML request posted by a user through a browser
         new_position, data_submitted = parse_data(request.form)
 
         for i in data_submitted:
@@ -56,6 +63,8 @@ def boom(data=0):
         print "The bug is", positions["bug"]
         print "The positions are :", positions
 
+        # Write the boom and bug positions into a file
+        # The file is used as a command buffer to the actuator controller
         write_file(BOOM_POITION_FILE, positions["boom"])
         write_file(BUG_POSITION_FILE, positions["bug"])
         
