@@ -2,11 +2,13 @@ Bug-Dropper
 ===========
 This is a script for controlling an Intel Galileo to move a spider up and down on a winch.
 
-Running
+Installing and running
 =======
-Envrionment setup
------------------
-If you are running this on the Intel Galileo you need to install Flask. Download it here and install it on the Galileo. http://flask.pocoo.org/ Flask also needs setuptool which can be downloaded from here. https://pypi.python.org/pypi/setuptools
+1. The only dependency needed by this is Flask. If you have pip then run ```pip install flask```. On the Intel Galileo pip is not available so you need to download Flask and its dependency setuptools from http://flask.pocoo.org/ and https://pypi.python.org/pypi/setuptools respectively.
+2. Download or clone this repo. If you are running this on a Galileo then you need to download the files on a seperate computer and copy them over using scp or something else.
+3. If you are running this on the Galileo then copy the Arduino sketch folder https://github.com/docprofsky/Bug-Dropper/tree/master/arduino (inside the arduino folder) from this repo to your sketchbook directory. Change the paths in the getBug() and getBoom() function to where you copied the repo to on the Gaileo.
+4. To start the webserver run ```python web/bug_main.py``` as root from the main directory of the repo. On the Galileo the default user is root so  ```sudo``` is no needed.
+5. Upload the sketch to the Galileo if you are using it. This only needs to be done once, as the Galileo will save the sketch across reboots. The first time you run this the web server should be started before the sketch is uploaded so it does not try to read a nonexistent file.
 
 License
 =======
