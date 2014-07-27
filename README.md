@@ -2,6 +2,12 @@ Bug-Dropper
 ===========
 This is a script for controlling an Intel Galileo to move a spider up and down on a winch.
 
+Running
+=======
+Envrionment setup
+-----------------
+If you are running this on the Intel Galileo you need to install Flask. Download it here and install it on the Galileo. http://flask.pocoo.org/ Flask also needs setuptool which can be downloaded from here. https://pypi.python.org/pypi/setuptools
+
 License
 =======
 This project uses the MIT License
