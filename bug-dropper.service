@@ -1,0 +1,12 @@
+[Unit]
+Description=The Bug Dropper web server service
+After=mdns.service
+
+[Service]
+ExecStart=/bin/su root -c 'cd /home/root/Bug-Dropper; python web/bug_main.py'
+Restart=always
+RestartSec=10s
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=default.target
